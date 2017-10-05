@@ -59,7 +59,17 @@ public class IntroToArrayLists {
 
 		}
 
+		System.out.println("\n");
+
 		// 7. Print only the Strings that have the letter 'e' in them.
+
+		for (String letter : list) {
+			if (letter.contains("E")) {
+				System.out.println(letter);
+
+			}
+
+		}
 
 	}
 }
