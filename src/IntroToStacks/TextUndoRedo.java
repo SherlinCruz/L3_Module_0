@@ -2,16 +2,18 @@ package IntroToStacks;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Stack;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TextUndoRedo implements KeyListener {
 	/*
-	 * Create a JFrame with a JPanel and a JLabel.
+	 * Create a JFrame with a JPanel and a JLabel:D
 	 * 
 	 * Every time a key is pressed, add that character to the JLabel. It should look
-	 * like a basic text editor.
+	 * like a basic text editor:D
 	 * 
 	 * Make it so that every time the BACKSPACE key is pressed, the last character
 	 * is erased from the JLabel. Save that deleted character onto a Stack of
@@ -26,9 +28,11 @@ public class TextUndoRedo implements KeyListener {
 	JPanel panel = new JPanel();
 	JLabel label = new JLabel();
 
+	Stack<Character> character = new Stack<Character>();
+
 	public static void main(String[] args) {
-		TextUndoRedo text = new TextUndoRedo();
-		text.keyPressed(null);
+		TextUndoRedo textUndoRedo = new TextUndoRedo();
+
 	}
 
 	TextUndoRedo() {
@@ -36,9 +40,10 @@ public class TextUndoRedo implements KeyListener {
 		panel.add(label);
 		frame.setVisible(true);
 		panel.setVisible(true);
-
-		label.addKeyListener(this);
-
+		label.setVisible(true);
+		label.setText("Text: ");
+		frame.addKeyListener(this);
+		frame.pack();
 	}
 
 	@Override
@@ -51,12 +56,35 @@ public class TextUndoRedo implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 
-		if (e.getSource().equals(e)) {
+		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-			System.out.println(e);
+			String erase = label.getText();
+
+			character.push(erase.charAt(erase.length() - 1));
+
+			String newString = erase.substring(0, erase.length() - 1);
+
+			label.setText(newString);
+
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+
+			// when that key is pressed, the top Character is popped off the Stack and added
+			// back to the JLabel.
+
+			int size = character.size();
+
+			for (int i = 0; i < size; i--) {
+				Character oldVariable = character.pop();
+			}
+		} else {
+
+			String v = label.getText();
+
+			v += e.getKeyChar();
+
+			label.setText(v);
 
 		}
-
 	}
 
 	@Override
