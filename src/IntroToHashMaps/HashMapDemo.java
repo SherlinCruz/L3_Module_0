@@ -13,7 +13,6 @@ public class HashMapDemo {
 		studentRoster.put(96546, "Willy Wham");
 		studentRoster.put(35413, "Janet Jam");
 		studentRoster.put(84565, "Ziggy Zam");
-
 		System.out.println("The student at #35413 is:seac ");
 		System.out.println(studentRoster.get(35413));
 

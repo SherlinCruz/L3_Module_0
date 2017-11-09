@@ -35,11 +35,7 @@ public class LogSearch implements ActionListener {
 	JButton button1 = new JButton();
 	JButton button2 = new JButton();
 	JButton button3 = new JButton();
-
-	// int idNumber;
-	// String name;
-	// int searchId;
-	// String searchName;
+	JButton button4 = new JButton();
 
 	HashMap<Integer, String> values = new HashMap<Integer, String>();
 
@@ -53,20 +49,21 @@ public class LogSearch implements ActionListener {
 		panel.add(button1);
 		panel.add(button2);
 		panel.add(button3);
-
+		panel.add(button4);
 		frame.setVisible(true);
 		panel.setVisible(true);
 		button1.setVisible(true);
 		button2.setVisible(true);
 		button3.setVisible(true);
-
-		button1.setText("Add id & name");
-		button2.setText("Search id & name");
+		button4.setVisible(true);
+		button1.setText("Add ID & Name");
+		button2.setText("Search ID & Name");
 		button3.setText("Show List");
+		button4.setText("Remove");
 		button1.addActionListener(this);
 		button2.addActionListener(this);
 		button3.addActionListener(this);
-
+		button4.addActionListener(this);
 		frame.pack();
 
 	}
@@ -88,30 +85,46 @@ public class LogSearch implements ActionListener {
 
 			int searchIdNumber = Integer.parseInt(searchId);
 
-			String searchName = JOptionPane.showInputDialog("Enter a name.");
-
-			
-			
-	/*		
 			if (values.containsKey(searchIdNumber)) {
 
 				values.get(searchId);
-				System.out.println(searchId);
-				
-				
-				if (values.containsKey(searchName)) {
-					//values.get(name);
 
-					System.out.println(searchName);
-					
-				}
+				JOptionPane.showMessageDialog(null, values.get(searchIdNumber));
 
-			}*/
-
-			else {
-				System.out.println("entry does not exist.");
 			}
 		}
+
+		else if (e.getSource().equals(button3)) {
+			// JOptionPane.showMessageDialog(null, "ID: " + values.put(null, values.) + "");
+
+			for (Integer s : values.keySet()) {
+
+				JOptionPane.showMessageDialog(null, "ID:" + s + "  " + "Name: " + values.get(s));
+			}
+
+			
+		}
+
+		else if (e.getSource().equals(button4)) {
+
+			String removeId = JOptionPane.showInputDialog("Enter an id number.");
+
+			int removeIdNumber = Integer.parseInt(removeId);
+
+			if (values.containsKey(removeIdNumber)) {
+
+				values.remove(removeIdNumber);
+
+			} else {
+				JOptionPane.showMessageDialog(null, "ID is not in the list.");
+			}
+
+		}
+
+		// add a fourth button to your window. Button 4: Remove
+		// Entry When this button is clicked, prompt the user to enter an ID using an
+		// input dialog. If this ID exists in the HashMap, remove it. Otherwise, notify
+		// the user that the ID is not in the list.
 
 	}
 }
